@@ -21,6 +21,10 @@ class Inventory extends React.Component {
     this.props.updateFish(key, updatedFish);
   }
 
+  handleRemove(key) {
+    this.props.removeFish(key);
+  }
+
   renderInventory(key) {
     const fish = this.props.fishes[key]
     return (
@@ -37,6 +41,7 @@ class Inventory extends React.Component {
             </textarea>
 
             <input type='text' name='image' onChange={e => this.handleChange(e, key)} value={fish.image} placeholder="Fish image" />
+            <button onClick={() => this.handleRemove(key)}>Remove fish</button>
         </div>
     )
   }
