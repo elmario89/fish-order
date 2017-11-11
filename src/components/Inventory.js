@@ -29,7 +29,7 @@ class Inventory extends React.Component {
     const fish = this.props.fishes[key]
     return (
         <div className="fish-edit" key={key}>
-            <input type='text' name='name' onChange={e => this.handleChange(e, key)} value={fish.name} placeholder="Fish name" />
+            <input className='name' type='text' name='name' onChange={e => this.handleChange(e, key)} value={fish.name} placeholder="Fish name" />
             <input type='text' name='price' onChange={e => this.handleChange(e, key)} value={fish.price} placeholder="Fish price" />
 
             <select type='text' name='status' onChange={e => this.handleChange(e, key)} value={fish.status} placeholder="Fish status" >

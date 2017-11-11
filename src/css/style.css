@@ -422,6 +422,11 @@ ul.order li span.count span {
   outline: 0;
   background: #fef2de;
 }
+.fish-edit input.name,
+.fish-edit textarea.name,
+.fish-edit select.name {
+  background: #ffd712;
+}
 .fish-edit textarea {
   width: 100%;
 }
