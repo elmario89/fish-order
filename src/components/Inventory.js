@@ -57,7 +57,7 @@ class Inventory extends React.Component {
 
     //grap the store info
     const storeRef = base.database().ref(this.props.storeId);
-    
+
     //query the firebase once for the store data
     storeRef.once('value', snapshot => {
       const data = snapshot.val() || {};
@@ -78,12 +78,12 @@ class Inventory extends React.Component {
 
   handleChange(e, key) {
     const fish = this.props.fishes[key];
-    //take copy of fish and update it with new data
 
+    //take copy of fish and update it with new data
     const updatedFish = {
         ...fish,
         [e.target.name]: e.target.value
-    }
+    };
 
     this.props.updateFish(key, updatedFish);
   }
@@ -93,7 +93,8 @@ class Inventory extends React.Component {
   }
 
   renderInventory(key) {
-    const fish = this.props.fishes[key]
+    const fish = this.props.fishes[key];
+
     return (
         <div className="fish-edit" key={key}>
             <input className='name' type='text' name='name' onChange={e => this.handleChange(e, key)} value={fish.name} placeholder="Fish name" />
@@ -150,6 +151,6 @@ Inventory.propTypes = {
   addFish: React.PropTypes.func.isRequired,
   loadSamples: React.PropTypes.func.isRequired,
   storeId: React.PropTypes.string.isRequired
-}
+};
 
 export default Inventory;
