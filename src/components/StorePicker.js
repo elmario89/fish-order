@@ -16,11 +16,11 @@ class StorePicker extends React.Component {
       return (
         <form className="store-selector" onSubmit={(e) => this.goToStore(e)}>
             <h2>Please enter a Store</h2>
-            <input 
+            <input
               ref={(input) => {this.storeInput = input}}
-              type="text" 
-              required 
-              placeholder="Store Name" 
+              type="text"
+              required
+              placeholder="Store Name"
               defaultValue={getFunName()}>
             </input>
             <button type="submit">Visit Store</button>

@@ -9,20 +9,9 @@ import Inventory from './Inventory';
 import Fish from './Fish';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.addFish = this.addFish.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
-    this.addToOrder = this.addToOrder.bind(this);
-    this.updateFish = this.updateFish.bind(this);
-    this.removeFish = this.removeFish.bind(this);
-    this.removeFromOrder = this.removeFromOrder.bind(this);
-
-    this.state = {
-      fishes: {},
-      order: {}
-    };
+  state = {
+    fishes: {},
+    order: {}
   }
 
   componentWillMount() {
@@ -52,7 +41,7 @@ class App extends React.Component {
     localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order));
   }
 
-  addFish(fish) {
+  addFish = (fish) => {
     // update our state
     const fishes = {...this.state.fishes};
 
@@ -62,24 +51,24 @@ class App extends React.Component {
 
     // set state
     this.setState({fishes});
-  }
+  };
 
-  updateFish(key, fish) {
+  updateFish = (key, fish) => {
     const fishes = {...this.state.fishes};
     fishes[key] = fish;
 
     this.setState({fishes})
-  }
+  };
 
-  removeFish(key) {
+  removeFish = (key) => {
     console.log(key);
     const fishes = {...this.state.fishes};
     fishes[key] = null;
 
     this.setState({fishes});
-  }
+  };
 
-  addToOrder(key) {
+  addToOrder = (key) => {
     // take a copy of state
     const order = {...this.state.order};
 
@@ -87,19 +76,19 @@ class App extends React.Component {
     order[key] = order[key] + 1 || 1;
 
     this.setState({order});
-  }
+  };
 
-  removeFromOrder(key) {
+  removeFromOrder = (key) => {
     const order = {...this.state.order};
     delete order[key];
     this.setState({order});
-  }
+  };
 
-  loadSamples() {
+  loadSamples = () => {
     this.setState({
       fishes: sampleFishes
     })
-  }
+  };
 
   render() {
       return (
@@ -109,7 +98,7 @@ class App extends React.Component {
                 <ul className="list-of-fishes">
                   {
                     Object.keys(this.state.fishes)
-                      .map(key => <Fish 
+                      .map(key => <Fish
                                     key={key}
                                     index={key}
                                     details={this.state.fishes[key]}
@@ -118,25 +107,25 @@ class App extends React.Component {
                   }
                 </ul>
             </div>
-            <Order 
-              fishes={this.state.fishes} 
-              order={this.state.order} 
-              params={this.props.params} 
+            <Order
+              fishes={this.state.fishes}
+              order={this.state.order}
+              params={this.props.params}
               removeFromOrder={this.removeFromOrder} />
-            <Inventory 
-              addFish={this.addFish} 
+            <Inventory
+              addFish={this.addFish}
               loadSamples={this.loadSamples}
-              fishes={this.state.fishes} 
-              updateFish={this.updateFish} 
-              removeFish={this.removeFish} 
+              fishes={this.state.fishes}
+              updateFish={this.updateFish}
+              removeFish={this.removeFish}
               storeId={this.props.params.storeId} />
         </div>
       )
   }
-}
 
-App.propTypes = {
-  params: React.PropTypes.object.isRequired
+  static propTypes = {
+    params: React.PropTypes.object.isRequired
+  }
 }
 
 export default App;
